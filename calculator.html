@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0, target-densitydpi=device-dpi " >
+	<title>practice</title>
+	<style>
+body, html {
+	height:100%;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select:none;
+} 
+#result{
+	background-color:rgb(50,50,50);
+	height:20%;
+	margin:0 0 10% 0;
+	border:8px solid black;
+	border-radius:30px;
+	text-align:right;
+	font-size:2em;
+	padding:5px;
+	color:white;
+	box-shadow:5px 3px 2px gray, -5px -3px 2px gray;
+	animation:start 1s;
+	word-wrap:break-word;
+} 
+#container{
+	display:grid;
+	grid-template-columns:auto auto auto auto;
+	grid-gap:1%;
+	height:70%;
+	background-color:red;
+	text-align:center;
+	font-size:3em;
+	background:linear-gradient(red,silver);
+	box-shadow:5px 3px 2px gray, -5px -3px 2px gray;
+	border-radius:4%;
+	transition:background-color 3s;
+	animation:starte 1s;
+} 
+#equal {
+	background-color:green; grid-area:4/4/6/4;padding:50px 0 0 0;
+	
+} 
+.numbers{
+	background-color:#44f;
+	border-radius:25%;
+	padding:10px;
+	transition:background-color 0.2s;
+} 
+@keyframes start{
+	from{transform:translate(0,-200px);}
+	to{transform:translate(0,0);} 
+} 
+@keyframes starte{
+	from{transform:translate(0,200px);}
+	to{transform:translate(0,0);}
+} 
+@media only screen and (min-width:600px){
+	#container{
+		font-size :7em ;
+	} 
+	#result{
+		font-size :7em;
+	} 
+} 
+</style>
+	</head>
+<body>
+	<div id="result"></div>
+	<div id="container">
+	   <div class="numbers">C</div>
+	   <div class="numbers">*</div>
+	   <div class="numbers">/</div>
+	   <div class="numbers"><|</div>
+	   <div class="numbers">1</div>
+	   <div class="numbers">2</div>
+	   <div class="numbers">3</div>
+	   <div class="numbers">-</div>
+	   <div class="numbers">4</div>
+	   <div class="numbers">5</div>
+	   <div class="numbers">6</div>
+	   <div class="numbers">+</div>
+	   <div class="numbers">7</div>
+	   <div class="numbers">8</div>
+	   <div class="numbers">9</div>
+	   <div class="numbers"id="equal">=</div>
+	   <div class="numbers">.</div>
+	   <div class="numbers">0</div> 
+	   <div class="numbers"id="nav">%</div>
+	</div>
+	<script>
+var result=document.getElementById("result");
+var e;
+var answer="" ;
+function animate(){
+if(e.innerHTML!="=") e.style.backgroundColor="#44f" 
+else e.style.backgroundColor="green" ;
+} 
+function update() {
+	result.innerHTML=answer;
+	e=event.target;
+	e.style.backgroundColor="#09f" ;
+	setTimeout(animate,100);
+} 
+var items=document.getElementsByClassName("numbers");
+items[0].addEventListener("click",function() {answer=""; update()});
+items[1].addEventListener("click",function() {answer+="*"; update()});
+items[2].addEventListener("click",function() {answer+="/"; update()});
+items[3].addEventListener("click",function() { answer=answer.slice(0,-1);update()});
+items[4].addEventListener("click",function() {answer+="1"; update()});
+items[5].addEventListener("click",function() {answer+="2"; update()});
+items[6].addEventListener("click",function() {answer+="3"; update()});
+items[7].addEventListener("click",function() {answer+="-"; update()});
+items[8].addEventListener("click",function() {answer+="4"; update()});
+items[9].addEventListener("click",function() {answer+="5"; update()});
+items[10].addEventListener("click",function() {answer+="6"; update()});
+items[11].addEventListener("click",function() {answer+="+"; update()});
+items[12].addEventListener("click",function() {answer+="7"; update()});
+items[13].addEventListener("click",function() {answer+="8"; update()});
+items[14].addEventListener("click",function() {answer+="9"; update()});
+items[15].addEventListener("click",function() {try{answer=String(eval(answer));update()} catch(e) {alert(e)} });
+items[16].addEventListener("click",function() {answer+="."; update()});
+items[17].addEventListener("click",function() {answer+="0"; update()});
+items[18].addEventListener("click",function() {answer+="%"; update()});
+</script> 
+</body>
+</html>
